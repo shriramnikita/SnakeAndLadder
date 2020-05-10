@@ -2,25 +2,19 @@
 
 echo "********Snake And Ladder*******"
 
-#uc1 add player and intialize position of the player 
-position=0
 
 endPosition=100
+diceCount=0
+player1Position=0
+player2Position=0
 
-
-#uc4 play unitl winning position
-while [ $position -le 100 ]
-do
-
-	#uc2 roll die toget number between 1 to 6
-	rollDie=$(($RANDOM%6 + 1 ))
-
-
-	#uc3 checks for position where if pos=0 no move,pos=1 ladder move ahead by rolldie, pos=2 snake go down by rolldie
+function getPosition(){
+	position=$1
+	rollDie=$(($RANDOM%6 +1 ))
+	((diceCount++))
 	option=$(($RANDOM%3))
 
 	case $option in
-
 		0)
 			position=$position
 		;;
@@ -37,8 +31,32 @@ do
 					position=0
 				elif [ $position -gt $endPosition ]
 				then
-					position=$(($postition-$diceRandom))
-				else
-					echo "Position--> " $position
+					position=$(($postition-$rollDie))
 				fi
+					echo "$position"
+}
+getPosition
+
+
+#uc7 add players
+read -p "Enter first player name:- " player1
+read -p "Enter second player name:- " player2 
+
+while [[ $player1Position -lt $endPosition && $player2Position -lt $endPosition ]]
+do
+
+player1Position=$(getPosition $player1Position)
+player2Position=$(getPosition $player2Position)
+
+echo "player 1 position :-" $player1Position
+echo "player 2 position :-" $player2Position
+
+	if [[ $player1Position -gt  $player2Position && $player1Position -eq $endPosition ]]
+	then
+		echo "Congratulations, $player1 you WIN!!!"
+	elif [ $player2Position -eq $endPosition ] 
+	then
+		echo "Congratulations, $player2 you WIN!!!"
+	fi
+
 done

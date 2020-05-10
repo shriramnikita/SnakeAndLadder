@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "********Snake And Ladder*******
+echo "********Snake And Ladder*******"

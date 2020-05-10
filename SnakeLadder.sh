@@ -5,7 +5,7 @@ echo "********Snake And Ladder*******"
 
 endPosition=100
 diceCount=0
-<<<<<<< HEAD
+
 player1Position=0
 player2Position=0
 
@@ -13,7 +13,7 @@ function getPosition(){
 	position=$1
 	rollDie=$(($RANDOM%6 +1 ))
 	((diceCount++))
-=======
+
 
 #uc4 play unitl winning position
 while [ $position -lt $endPosition ]
@@ -26,7 +26,7 @@ do
 	((diceCount++))
 
 	#uc3 checks for position where if pos=0 no move,pos=1 ladder move ahead by rolldie, pos=2 snake go down by rolldie
->>>>>>> ebfe5f35320d27f59e95a4a1b2d71eff59c367c1
+
 	option=$(($RANDOM%3))
 
 	case $option in
@@ -48,11 +48,10 @@ do
 				elif [ $position -gt $endPosition ]
 				then
 					position=$(($postition-$rollDie))
-<<<<<<< HEAD
-=======
+
 				else
 					echo "Position--> " $position
->>>>>>> ebfe5f35320d27f59e95a4a1b2d71eff59c367c1
+
 				fi
 					echo "$position"
 }
@@ -81,5 +80,3 @@ echo "player 2 position :-" $player2Position
 	fi
 
 done
-
-echo "No. of times the dice was rolled to win: "$position
